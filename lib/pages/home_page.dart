@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_new, depend_on_referenced_packages
+// ignore_for_file: prefer_const_constructors, unnecessary_new, depend_on_referenced_packages, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
 import '../fragments/fragmento1.dart';
@@ -66,6 +66,7 @@ class HomePageState extends State<HomePage> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text("BIKE FINDER"),
+        backgroundColor: Colors.green,
       ),
       drawer: new Drawer(
         child: new Column(
