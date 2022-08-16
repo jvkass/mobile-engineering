@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_new
+// ignore_for_file: unnecessary_new, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
 import 'pages/login_page.dart';
