@@ -1,21 +1,26 @@
-// ignore_for_file: unnecessary_new, use_key_in_widget_constructors
-
 import 'package:flutter/material.dart';
-import 'pages/login_page.dart';
-import 'pages/home_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(new MyApp());
+import 'pages/home_page.dart';
+import 'pages/login_page.dart';
+
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: new ThemeData(
+      theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new LoginPage(),
+      home: LoginPage(),
       routes: {'/homepage': (context) => HomePage()},
     );
   }

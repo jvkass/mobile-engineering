@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "413080471112",
+    "project_id": "bike-finder-ac196",
+    "storage_bucket": "bike-finder-ac196.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413080471112:android:d39fe1f8ffc18e04423a7d",
+        "android_client_info": {
+          "package_name": "br.com.grupo.bikefinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "413080471112-e51m3l8lccj3rujie8nbcsmnce6scohr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6O8OEw16bBd3J568uTpfL8vBVcGY-1Ug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "413080471112-e51m3l8lccj3rujie8nbcsmnce6scohr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
