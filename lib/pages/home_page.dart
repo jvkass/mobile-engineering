@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new, depend_on_referenced_packages, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import '../fragments/fragmento1.dart';
-import '../fragments/fragmento2.dart';
-import '../fragments/fragmento3.dart';
+import '../fragments/opcoes.dart';
+import '../fragments/mapa.dart';
+import '../fragments/estacoes.dart';
 
 class MenuItem {
   String titulo;
