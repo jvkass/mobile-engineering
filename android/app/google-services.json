@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "413080471112",
+    "project_id": "bike-finder-ac196",
+    "storage_bucket": "bike-finder-ac196.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413080471112:android:225dc239508bcd9f423a7d",
+        "android_client_info": {
+          "package_name": "br.com.bikefinder.bike_finder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "413080471112-e51m3l8lccj3rujie8nbcsmnce6scohr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6O8OEw16bBd3J568uTpfL8vBVcGY-1Ug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "413080471112-e51m3l8lccj3rujie8nbcsmnce6scohr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "413080471112-f9pqk8h9b453a5cmsiuhmmn48uiqjh7f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.grupo.bikefinder"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413080471112:android:a308c8d5c6e09a62423a7d",
+        "android_client_info": {
+          "package_name": "br.com.grupo.bikefinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "413080471112-e51m3l8lccj3rujie8nbcsmnce6scohr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6O8OEw16bBd3J568uTpfL8vBVcGY-1Ug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "413080471112-e51m3l8lccj3rujie8nbcsmnce6scohr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "413080471112-f9pqk8h9b453a5cmsiuhmmn48uiqjh7f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.grupo.bikefinder"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

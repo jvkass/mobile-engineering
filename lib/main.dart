@@ -1,22 +1,32 @@
-// ignore_for_file: unnecessary_new, use_key_in_widget_constructors
-
+import 'package:bike_finder/firebase/authentication_gate.dart';
+import 'package:bike_finder/firebase/firebase_options.dart';
+import 'package:bike_finder/firebase/label_overrides.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'pages/login_page.dart';
-import 'pages/home_page.dart';
+import 'package:flutterfire_ui/i10n.dart';
 
-void main() => runApp(new MyApp());
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-class MyApp extends StatelessWidget {
+  runApp(const BikeFinderApp());
+}
+
+class BikeFinderApp extends StatelessWidget {
+  const BikeFinderApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: new ThemeData(
+      localizationsDelegates: [
+        FlutterFireUILocalizations.withDefaultOverrides(const LabelOverrides()),
+      ],
+      title: 'Bike Finder',
+      theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new LoginPage(),
-      routes: {'/homepage': (context) => HomePage()},
+      home: const AuthenticationGate(),
     );
   }
 }
