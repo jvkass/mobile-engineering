@@ -1,4 +1,4 @@
-name: flutter_application_1
+name: bike_finder
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -35,6 +35,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   cloud_firestore: ^3.4.4
+  flutterfire_ui: ^0.4.3+6
+  firebase_core: ^1.21.0
+  firebase_auth: ^3.6.4
 
 dev_dependencies:
   flutter_test:

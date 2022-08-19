@@ -1,22 +1,23 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_new, depend_on_referenced_packages, use_key_in_widget_constructors
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../fragments/opcoes.dart';
-import '../fragments/mapa.dart';
+
 import '../fragments/estacoes.dart';
+import '../fragments/mapa.dart';
+import '../fragments/opcoes.dart';
 
 class MenuItem {
   String titulo;
   IconData icon;
+
   MenuItem(this.titulo, this.icon);
 }
 
 class HomePage extends StatefulWidget {
-  final menuItens = [
-    new MenuItem("HOME", Icons.home),
-    new MenuItem("MAPA", Icons.map),
-    new MenuItem("TODOS", Icons.list)
-  ];
+  final User user;
+
+  HomePage({Key? key, required this.user}) : super(key: key);
+
+  final menuItens = [MenuItem("HOME", Icons.home), MenuItem("MAPA", Icons.map), MenuItem("TODOS", Icons.list)];
 
   @override
   State<StatefulWidget> createState() {
@@ -48,44 +49,51 @@ class HomePageState extends State<HomePage> {
   }
 
   int _selecionado = 0;
+
   _carregaFragmento(int carrega) {
     switch (carrega) {
       case 0:
-        return new fragmentoOne();
+        return fragmentoOne();
       case 1:
-        return new fragmentoTwo();
+        return fragmentoTwo();
       case 2:
-        return new fragmentoTree();
+        return fragmentoTree();
       default:
-        return new Text('Essa página não existe');
+        return Text('Essa página não existe');
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("BIKE FINDER"),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("BIKE FINDER"),
         backgroundColor: Colors.green,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.logout_outlined),
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+          )
+        ],
       ),
-      drawer: new Drawer(
-        child: new Column(
+      drawer: Drawer(
+        child: Column(
           children: <Widget>[
-            new UserAccountsDrawerHeader(
-                accountName: new Text("João Vitor"),
-                currentAccountPicture: new CircleAvatar(
-                  backgroundImage: new NetworkImage(
-                      "https://avatars.githubusercontent.com/u/42699785?s=40&v=4"),
+            const UserAccountsDrawerHeader(
+                accountName: Text("João Vitor"),
+                currentAccountPicture: CircleAvatar(
+                  backgroundImage: NetworkImage("https://avatars.githubusercontent.com/u/42699785?s=40&v=4"),
                 ),
-                decoration: new BoxDecoration(
-                    image: new DecorationImage(
-                        colorFilter: ColorFilter.mode(
-                            Colors.black87, BlendMode.multiply),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        colorFilter: ColorFilter.mode(Colors.black87, BlendMode.multiply),
                         fit: BoxFit.fill,
-                        image: new NetworkImage(
-                            "http://nordichouse.is/wp-content/uploads/2017/10/pexels-photo-287748.jpeg"))),
-                accountEmail: new Text("bikefinder@gmail.com")),
-            new Column(
+                        image:
+                            NetworkImage("http://nordichouse.is/wp-content/uploads/2017/10/pexels-photo-287748.jpeg"))),
+                accountEmail: Text("bikefinder@gmail.com")),
+            Column(
               children: _menuItem(),
             )
           ],
