@@ -1,18 +1,26 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new, camel_case_types, library_private_types_in_public_api, use_key_in_widget_constructors, avoid_unnecessary_containers
 
+import 'package:bike_finder/widget/station_tile.dart';
 import 'package:flutter/material.dart';
 
-class fragmentoTree extends StatefulWidget {
+class estacoes extends StatefulWidget {
   @override
-  _fragmentoTreeState createState() => _fragmentoTreeState();
+  _estacoesState createState() => _estacoesState();
 }
 
-class _fragmentoTreeState extends State<fragmentoTree> {
+class _estacoesState extends State<estacoes> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: new Center(
-      child: new Text("Fragmento 3"),
-    ));
+    return ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index){
+          return ListTile(
+            title: StationTile(
+
+            ),
+          );
+
+        }
+    );
   }
 }

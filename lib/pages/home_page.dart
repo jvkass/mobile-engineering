@@ -57,7 +57,7 @@ class HomePageState extends State<HomePage> {
       case 1:
         return fragmentoTwo();
       case 2:
-        return fragmentoTree();
+        return estacoes();
       default:
         return Text('Essa página não existe');
     }
