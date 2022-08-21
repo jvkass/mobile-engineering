@@ -18,3 +18,7 @@ samples, guidance on mobile development, and a full API reference.
 ## run project - execute command
 
 flutter run
+
+## Error referente a falha na build por falta da especificação do sdk no /android/local.properties
+
+flutter.minSdkVersion=21
