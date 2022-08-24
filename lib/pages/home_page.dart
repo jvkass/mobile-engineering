@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../fragments/estacoes.dart';
+import '../fragments/stations.dart';
 import '../fragments/mapa.dart';
 import '../fragments/opcoes.dart';
 
@@ -57,7 +57,7 @@ class HomePageState extends State<HomePage> {
       case 1:
         return fragmentoTwo();
       case 2:
-        return estacoes();
+        return Stations();
       default:
         return Text('Essa página não existe');
     }
