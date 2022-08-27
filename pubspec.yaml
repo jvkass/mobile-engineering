@@ -38,6 +38,9 @@ dependencies:
   flutterfire_ui: ^0.4.3+6
   firebase_core: ^1.21.0
   firebase_auth: ^3.6.4
+  flutter_map: ^2.2.0
+  latlong2: ^0.8.1
+  latlong: ^0.6.1
 
 dev_dependencies:
   flutter_test:
