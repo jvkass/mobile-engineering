@@ -22,6 +22,7 @@ flutter run
 ## Error referente a falha na build por falta da especificação do sdk no /android/local.properties
 
 flutter.minSdkVersion=21
+flutter.compileSdkVersion=33
 
 ## Error referente a de acesso a internet, a linha de codigo deve ser android\app\src\main\AndroidManifest.xml
 
