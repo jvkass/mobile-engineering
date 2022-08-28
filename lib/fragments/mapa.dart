@@ -7,7 +7,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 
-const maxMarkersCount = 5000;
+const maxMarkersCount = 100;
 
 class fragmentoTwo extends StatefulWidget {
   @override
@@ -15,8 +15,17 @@ class fragmentoTwo extends StatefulWidget {
 }
 
 class _fragmentoTwoState extends State<fragmentoTwo> {
+  Future<List<Station>> getStations() async {
+    const url = "https://cryptic-inlet-55734.herokuapp.com/estacoes";
+    final response = await http.get(Uri.parse(url));
+    final body = json.decode(response.body);
+
+    return body.map<Station>((val) => Station.fromJson(val)).toList();
+  }
+
   List<Marker> allMarkers = [];
-  int _sliderVal = maxMarkersCount ~/ 10;
+  int _sliderVal = 0;
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -27,7 +36,8 @@ class _fragmentoTwoState extends State<fragmentoTwo> {
             {
               allMarkers.add(
                 Marker(
-                  point: LatLng(s.geometry!.coordinates!.last, s.geometry!.coordinates!.first),
+                  point: LatLng(s.geometry!.coordinates!.last,
+                      s.geometry!.coordinates!.first),
                   builder: (context) => const Icon(
                     Icons.directions_bike,
                     color: Colors.black,
@@ -38,7 +48,7 @@ class _fragmentoTwoState extends State<fragmentoTwo> {
             }
         });
 
-    setState(() {});
+    setState(() => isLoading = false);
   }
 
   @override
@@ -48,34 +58,33 @@ class _fragmentoTwoState extends State<fragmentoTwo> {
         Slider(
           min: 0,
           max: maxMarkersCount.toDouble(),
-          divisions: maxMarkersCount ~/ 500,
-          label: 'Markers',
+          divisions: maxMarkersCount ~/ 10,
+          label: 'Estações',
           value: _sliderVal.toDouble(),
           onChanged: (newVal) {
             _sliderVal = newVal.toInt();
-            setState(() {});
+            setState(() => isLoading = true);
           },
         ),
-        Text('$_sliderVal markers'),
+        Text('$_sliderVal estações'),
         Flexible(
-          child: FlutterMap(
-            options: MapOptions(minZoom: 10.0, center: LatLng(-3.7318616, -38.5266704)),
-            layers: [
-              TileLayerOptions(
-                  urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', subdomains: ['a', 'b', 'c']),
-              MarkerLayerOptions(markers: allMarkers.sublist(0, min(allMarkers.length, _sliderVal)))
-            ],
-          ),
-        ),
+            child: isLoading
+                ? FlutterMap(
+                    options: MapOptions(
+                        minZoom: 10.0, center: LatLng(-3.7318616, -38.5266704)),
+                    layers: [
+                      TileLayerOptions(
+                          urlTemplate:
+                              'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                          subdomains: ['a', 'b', 'c']),
+                      MarkerLayerOptions(
+                          markers: allMarkers.sublist(
+                              0, min(allMarkers.length, _sliderVal)))
+                    ],
+                  )
+                : const Text(
+                    'Informe a quantidade de estações para visualização')),
       ],
     );
-  }
-
-  Future<List<Station>> getStations() async {
-    const url = "https://cryptic-inlet-55734.herokuapp.com/estacoes";
-    final response = await http.get(Uri.parse(url));
-    final body = json.decode(response.body);
-
-    return body.map<Station>((val) => Station.fromJson(val)).toList();
   }
 }
