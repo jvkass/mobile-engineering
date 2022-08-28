@@ -1,11 +1,13 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_new, camel_case_types, library_private_types_in_public_api, use_key_in_widget_constructors, avoid_unnecessary_containers
+import 'dart:convert';
+import 'dart:math';
 
+import 'package:bike_finder/entities/station.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
-import 'dart:convert';
-import 'package:bike_finder/entities/station.dart';
 import 'package:http/http.dart' as http;
+import 'package:latlong2/latlong.dart';
+
+const maxMarkersCount = 5000;
 
 class fragmentoTwo extends StatefulWidget {
   @override
@@ -13,33 +15,59 @@ class fragmentoTwo extends StatefulWidget {
 }
 
 class _fragmentoTwoState extends State<fragmentoTwo> {
+  List<Marker> allMarkers = [];
+  int _sliderVal = maxMarkersCount ~/ 10;
+
+  @override
+  void initState() {
+    super.initState();
+
+    getStations().then((value) => {
+          for (Station s in value)
+            {
+              allMarkers.add(
+                Marker(
+                  point: LatLng(s.geometry!.coordinates!.last, s.geometry!.coordinates!.first),
+                  builder: (context) => const Icon(
+                    Icons.directions_bike,
+                    color: Colors.black,
+                    size: 12,
+                  ),
+                ),
+              )
+            }
+        });
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    var stations = getStations();
-
-    return Container(
-      child: new FlutterMap(
-          options: new MapOptions(
-              minZoom: 10.0, center: new LatLng(-3.7318616, -38.5266704)),
-          layers: [
-            new TileLayerOptions(
-                urlTemplate:
-                    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                subdomains: ['a', 'b', 'c']),
-            new MarkerLayerOptions(markers: [
-              new Marker(
-                  width: 45.0,
-                  height: 45.0,
-                  point: new LatLng(-3.7321944, -38.510347),
-                  builder: (context) => new Container(
-                        child: IconButton(
-                            icon: Icon(Icons.directions_bike),
-                            onPressed: () {
-                              print('Marker tapped 2!');
-                            }),
-                      ))
-            ])
-          ]),
+    return Column(
+      children: [
+        Slider(
+          min: 0,
+          max: maxMarkersCount.toDouble(),
+          divisions: maxMarkersCount ~/ 500,
+          label: 'Markers',
+          value: _sliderVal.toDouble(),
+          onChanged: (newVal) {
+            _sliderVal = newVal.toInt();
+            setState(() {});
+          },
+        ),
+        Text('$_sliderVal markers'),
+        Flexible(
+          child: FlutterMap(
+            options: MapOptions(minZoom: 10.0, center: LatLng(-3.7318616, -38.5266704)),
+            layers: [
+              TileLayerOptions(
+                  urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', subdomains: ['a', 'b', 'c']),
+              MarkerLayerOptions(markers: allMarkers.sublist(0, min(allMarkers.length, _sliderVal)))
+            ],
+          ),
+        ),
+      ],
     );
   }
 
