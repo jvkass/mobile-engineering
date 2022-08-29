@@ -10,9 +10,16 @@ class fragmentoOne extends StatefulWidget {
 class _fragmentoOneState extends State<fragmentoOne> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: new Center(
-      child: new Text("Fragmento 1"),
-    ));
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Image.asset('images/bike.png'),
+            Text('Bem vindo ao Bikefinder')
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -55,6 +55,7 @@ class _fragmentoTwoState extends State<fragmentoTwo> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const Text('Selecione a quantidade de estações para visualização'),
         Slider(
           min: 0,
           max: maxMarkersCount.toDouble(),
@@ -68,22 +69,19 @@ class _fragmentoTwoState extends State<fragmentoTwo> {
         ),
         Text('$_sliderVal estações'),
         Flexible(
-            child: isLoading
-                ? FlutterMap(
-                    options: MapOptions(
-                        minZoom: 10.0, center: LatLng(-3.7318616, -38.5266704)),
-                    layers: [
-                      TileLayerOptions(
-                          urlTemplate:
-                              'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                          subdomains: ['a', 'b', 'c']),
-                      MarkerLayerOptions(
-                          markers: allMarkers.sublist(
-                              0, min(allMarkers.length, _sliderVal)))
-                    ],
-                  )
-                : const Text(
-                    'Informe a quantidade de estações para visualização')),
+            child: FlutterMap(
+          options: MapOptions(
+              minZoom: 10.0, center: LatLng(-3.7318616, -38.5266704)),
+          layers: [
+            TileLayerOptions(
+                urlTemplate:
+                    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                subdomains: ['a', 'b', 'c']),
+            MarkerLayerOptions(
+                markers:
+                    allMarkers.sublist(0, min(allMarkers.length, _sliderVal)))
+          ],
+        )),
       ],
     );
   }
