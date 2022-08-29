@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_new, unused_field, prefer_final_fields, library_private_types_in_public_api, use_key_in_widget_constructors
-
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
